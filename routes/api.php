@@ -13,12 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::group(['prefix' => 'v1'], function(){
+// 	Route::resource('lessons', 'LessonsController');
+// });
+
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', function ($api) {
+
+	$api->group(['namespace' => 'App\Api\Controllers'], function($api) {
+
+		$api->get('lessons', 'LessonsController@index');
+
+	});
+
 });
-
-Route::group(['prefix' => 'v1'], function(){
-	Route::resource('lessons', 'LessonsController');
-});
-
-
