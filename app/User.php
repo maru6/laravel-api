@@ -21,6 +21,10 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function getAuthPassword() {
+        return $this->user_password;
+    }
+
 
     protected $fillable = [
         'name', 'email', 'password',

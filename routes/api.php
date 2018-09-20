@@ -33,6 +33,8 @@ $api->version('v1', function ($api) {
 
 		$api->group(['middleware' => 'jwt.auth'],function($api) {
 
+			$api->get('user/me', 'AuthController@getAuthenticatedUser');
+
 			$api->get('lessons', 'LessonsController@index');
 
 			$api->get('lessons/{id}', 'LessonsController@show');
